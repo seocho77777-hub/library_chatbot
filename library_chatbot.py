@@ -1,9 +1,7 @@
 import os
 import streamlit as st
-import nest_asyncio
 
 # Streamlit에서 비동기 작업을 위한 이벤트 루프 설정
-nest_asyncio.apply()
 
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -84,7 +82,7 @@ def initialize_components(selected_model):
     qa_system_prompt = """You are an assistant for question-answering tasks. \
     Use the following pieces of retrieved context to answer the question. \
     If you don't know the answer, just say that you don't know. \
-    Keep the answer perfect. please use imogi with the answer.
+    Keep the answer perfect. please use emojis with the answer.
     대답은 한국어로 하고, 존댓말을 써줘.\
 
     {context}"""
@@ -139,3 +137,4 @@ if prompt_message := st.chat_input("Your question"):
             with st.expander("참고 문서 확인"):
                 for doc in response['context']:
                     st.markdown(doc.metadata['source'], help=doc.page_content)
+
